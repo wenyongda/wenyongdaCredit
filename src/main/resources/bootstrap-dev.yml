@@ -1,0 +1,36 @@
+server:
+  port: 9012
+
+spring:
+  application:
+    name: wenyongdaCredit
+  profiles:
+    active: prod
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.6.129:8848 #配置Nacos地址
+#        server-addr: 1.12.218.175:8848
+        enabled: true
+        group: prod
+        namespace: 9e0d6f00-ec9b-4d6d-ad48-20521a2df600
+#        namespace: c822b61d-c4b3-4e9f-a9ee-028a208c8500
+#        ip: 8.140.174.251
+#        port: 9012
+      config:
+        server-addr: 192.168.6.129:8848 #配置Nacos地址
+#        server-addr: 1.12.218.175:8848
+        enabled: true
+        file-extension: yaml
+        group: prod
+        namespace: 9e0d6f00-ec9b-4d6d-ad48-20521a2df600
+#        namespace: c822b61d-c4b3-4e9f-a9ee-028a208c8500
+#    sentinel:
+#      transport:
+#        dashboard: 127.0.0.1:8858
+#        port: 8719
+
+#logging:
+#  config: classpath:log4j2.xml
+#  level:
+#    root: info

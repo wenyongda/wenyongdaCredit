@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wyd</groupId>
+    <artifactId>wenyongdaCredit</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <lombok.version>1.16.18</lombok.version>
+        <mysql.version>8.0.25</mysql.version>
+        <druid.version>1.2.5</druid.version>
+        <druid.spring.boot.version>1.1.22</druid.spring.boot.version>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
+        <pagehelper.version>1.2.5</pagehelper.version>
+        <spring.shiro.version>1.6.0</spring.shiro.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--spring boot 2.2.2-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.2.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring cloud Hoxton.SR1-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--  spring cloud alibaba 2.1.0.RELEASE-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+        <dependencies>
+            <!--SpringCloud alibaba nacos-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+            </dependency>
+            <!--引入actuator健康监控-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <!--<exclusions>-->
+                <!--    &lt;!&ndash; 排除掉logging，不使用logback，改用log4j2&ndash;&gt;-->
+                <!--    <exclusion>-->
+                <!--        <groupId>org.springframework.boot</groupId>-->
+                <!--        <artifactId>spring-boot-starter-logging</artifactId>-->
+                <!--    </exclusion>-->
+                <!--</exclusions>-->
+            </dependency>
+            <!-- spring junit -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <!--  mysql-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!--  druid-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.spring.boot.version}</version>
+            </dependency>
+            <!--junit-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <scope>provided</scope>
+                <version>${junit.version}</version>
+            </dependency>
+            <!--热部署-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <scope>runtime</scope>
+                <optional>true</optional>
+                <version>2.2.2.RELEASE</version>
+            </dependency>
+            <!-- SpringBoot整合Web组件 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+            <!-- redisTemplate -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+            </dependency>
+            <!-- MyBatis-Plus-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>1.2.5</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis-spring</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-autoconfigure</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <!--mp代码生成器-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>3.4.0</version>
+            </dependency>
+
+            <!-- jwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.9.1</version>
+            </dependency>
+
+            <!-- hutool 工具类-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>5.7.16</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.7</version>
+            </dependency>
+
+            <!-- lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <optional>true</optional>
+            </dependency>
+            <!--  邮件第三方依赖  -->
+            <dependency>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>javax.mail</artifactId>
+                <version>1.6.2</version>
+            </dependency>
+            <!-- rocketmq -->
+
+            <!--<dependency>-->
+            <!--    <groupId>org.apache.rocketmq</groupId>-->
+            <!--    <artifactId>rocketmq-spring-boot-starter</artifactId>-->
+            <!--    <version>2.2.1</version>-->
+            <!--</dependency>-->
+
+            <!-- swagger3 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+
+            <!-- rocketmq -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>4.9.2</version>
+            </dependency>
+            <!--  beanshell  -->
+            <dependency>
+                <groupId>org.beanshell</groupId>
+                <artifactId>bsh</artifactId>
+                <version>2.0b4</version>
+            </dependency>
+
+        </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <!--<configuration>-->
+                <!--    <source>${java.version}</source>-->
+                <!--    <target>${java.version}</target>-->
+                <!--</configuration>-->
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <skipTests>true</skipTests>  <!--默认关掉单元测试 -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 指定该Main Class为全局的唯一入口 -->
+                    <mainClass>com.wyd.wenyongdaCredit.CreditRunMain</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
